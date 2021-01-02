@@ -13,7 +13,8 @@ class CustomImage:
     def __init__(self,img):
         self.img = img
     
-    def get_dimensions(self):
+    @property
+    def size(self):
         return self.img.size
     
     def resizeW(self,width):
@@ -21,8 +22,13 @@ class CustomImage:
         wpercent = (width / float(w))
         hsize = int(float(h) * float(wpercent))
         self.img = self.img.resize((width,hsize),Image.LANCZOS) 
-
+    def clone(self):
+        return CustomImage.fromBytes(self.toBytes)
     
+    def toBytes(self):
+        return self.img.tobytes()
+
+
     def toBase64(self):
         buff = BytesIO()
         self.img.save(buff,format="JPEG")

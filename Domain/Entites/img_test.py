@@ -3,7 +3,7 @@ import base64
 from io import BytesIO
 import io
 from PIL import Image
-import img
+import img 
 
 class TestImgEntity(unittest.TestCase):
     def setUp(self):
@@ -27,7 +27,7 @@ class TestImgEntity(unittest.TestCase):
 
         test_img.resizeW(120)
 
-        self.assertEqual(expected,test_img.get_dimensions())
+        self.assertEqual(expected,test_img.size)
         
 
 
