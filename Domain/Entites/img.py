@@ -19,12 +19,17 @@ class CustomImage:
     
     def resizeW(self,width):
         w,h = self.img.size
-        wpercent = (width / float(w))
+        wpercent = (float(width) / float(w))
         hsize = int(float(h) * float(wpercent))
         self.img = self.img.resize((width,hsize),Image.LANCZOS) 
     def clone(self):
-        return CustomImage.fromBytes(self.toBytes)
+        img = ""
+        with BytesIO() as buff:
+            self.img.save(buff,format="PNG")
+            img = CustomImage.fromBytes(buff.getvalue())
+        return img
     
+
     def toBytes(self):
         return self.img.tobytes()
 

@@ -29,9 +29,8 @@ class TestWaterMarkService(unittest.TestCase):
         expected = (0 , 12)
         watermark = CustomImage.fromBytes(self.watermark_data)
         watermark.resizeW(self.dummyImg.size[0])
-        drawer = WaterMarkDrawer(self.watermark_data)
-
-        result = drawer.calculate_watermark_pos(self.dummyImg,watermark)
+        drawer = WaterMarkDrawer(watermark)
+        result = drawer.calculate_watermark_pos(self.dummyImg)
         self.assertEqual(expected,result)
 
 
